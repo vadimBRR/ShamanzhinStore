@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import ProductGrid from './ProductGrid'
 const selectedProduct = {
 	name: 'Jacket',
 	price: 120,
@@ -20,16 +21,66 @@ const selectedProduct = {
 		},
 	],
 }
+
+const similarProducts = [
+	{
+		_id: 1,
+		name: 'Product 1',
+		price: 100,
+		images: [
+			{
+				url: 'https://picsum.photos/500/500?random=1',
+				alt: 'Product 1',
+			},
+		],
+	},
+	{
+		_id: 2,
+		name: 'Product 2',
+		price: 200,
+		images: [
+			{
+				url: 'https://picsum.photos/500/500?random=2',
+				alt: 'Product 2',
+			},
+		],
+	},
+	{
+		_id: 3,
+		name: 'Product 3',
+		price: 300,
+		images: [
+			{
+				url: 'https://picsum.photos/500/500?random=3',
+				alt: 'Product 3',
+			},
+		],
+	},
+	{
+		_id: 4,
+		name: 'Product 4',
+		price: 400,
+		images: [
+			{
+				url: 'https://picsum.photos/500/500?random=4',
+				alt: 'Product 4',
+			},
+		],
+	},
+]
 const ProductDetails = () => {
 	const [mainImage, setMainImage] = useState('')
 	const [selectedColor, setSelectedColor] = useState('')
 	const [selectedSize, setSelectedSize] = useState('')
 	const [quantity, setQuantity] = useState(1)
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+	const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+  const [isLoading,setIsLoading]=useState(true)
 	useEffect(() => {
+
 		if (selectedProduct.images.length > 0) {
 			setMainImage(selectedProduct.images[0].url)
 		}
+    setIsLoading(false)
 		// if (selectedProduct.colors.length > 0) {
 		// 	setSelectedColor(selectedProduct.colors[0])
 		// }
@@ -39,29 +90,34 @@ const ProductDetails = () => {
 	}, [selectedProduct])
 
 	const increaseQuantity = () => {
-		setQuantity(prev=> prev+1)
+		setQuantity(prev => prev + 1)
 	}
 	const decreaseQuantity = () => {
 		if (quantity !== 0) {
-			setQuantity(prev=>prev-1)
+			setQuantity(prev => prev - 1)
 		}
 	}
-  const handleAddToCart = () => {
-    if(!selectedColor || !selectedSize){
-      toast.error("Please select color and size", {
-        duration: 1000
-      })
-      return 
-    }
-    setIsButtonDisabled(true)
-    setTimeout(() => {
-      toast.success("Product added to cart", {
-        duration: 1000
-      })
-      setIsButtonDisabled(false)
-    }, 1000);
-  }
+	const handleAddToCart = () => {
+		if (!selectedColor || !selectedSize) {
+			toast.error('Please select color and size', {
+				duration: 1000,
+			})
+			return
+		}
+		setIsButtonDisabled(true)
+		setTimeout(() => {
+			toast.success('Product added to cart', {
+				duration: 1000,
+			})
+			setIsButtonDisabled(false)
+		}, 1000)
+	}
 
+  if(isLoading){
+    return <div>
+      Loading...
+    </div>
+  }
 	return (
 		<div className='p-6'>
 			<div className='max-w-6xl mx-auto bg-white p-8 rounded-lg'>
@@ -84,7 +140,7 @@ const ProductDetails = () => {
 					<div className='md:w-1/2'>
 						<div className='mb-4'>
 							<img
-								src={mainImage}
+								src={mainImage }
 								alt={selectedProduct.images[0]?.alt || 'Image 1'}
 								className='w-full h-auto object-cover rounded-lg'
 							/>
@@ -96,14 +152,19 @@ const ProductDetails = () => {
 						{selectedProduct.images.map((img, index) => (
 							<img
 								key={index}
-								src={img.url}
+								src={img.url }
 								alt={img.alt || `Image ${index}`}
 								className={`w-20 h-20 object-cover rounded-lg cursor-pointer border  ${
 									mainImage === img.url ? 'border-black' : 'border-gray-300'
 								}`}
+
+
 								onClick={() => setMainImage(img.url)}
 							/>
 						))}
+
+
+
 					</div>
 					<div className='md:w-1/2 md:ml-10'>
 						<h1 className='text-2xl md:text-3xl font-semibold mb-2'>
@@ -161,7 +222,11 @@ const ProductDetails = () => {
 							<p className='text-gray-700'>Quantity:</p>
 							<div className='flex items-center space-x-4 mt-2'>
 								<button
-									className={`px-2 py-1  rounded text-lg ${quantity ===0 ? 'bg-gray-100 text-gray-400' : 'text-black bg-gray-200 cursor-pointer'} `}
+									className={`px-2 py-1  rounded text-lg ${
+										quantity === 0
+											? 'bg-gray-100 text-gray-400'
+											: 'text-black bg-gray-200 cursor-pointer'
+									} `}
 									onClick={decreaseQuantity}
 								>
 									-
@@ -175,7 +240,13 @@ const ProductDetails = () => {
 								</button>
 							</div>
 						</div>
-						<button onClick={handleAddToCart} disabled={isButtonDisabled} className={` text-white py-2 px-6 rounded w-full mb-4 uppercase transition-colors duration-200  cursor-pointer ${isButtonDisabled ? 'bg-gray-400' : 'bg-black hover:bg-gray-700'} `}>
+						<button
+							onClick={handleAddToCart}
+							disabled={isButtonDisabled}
+							className={` text-white py-2 px-6 rounded w-full mb-4 uppercase transition-colors duration-200  cursor-pointer ${
+								isButtonDisabled ? 'bg-gray-400' : 'bg-black hover:bg-gray-700'
+							} `}
+						>
 							{isButtonDisabled ? 'Adding...' : 'Add to cart'}
 						</button>
 						<div className='mt-10 text-gray-700'>
@@ -194,6 +265,13 @@ const ProductDetails = () => {
 							</table>
 						</div>
 					</div>
+				</div>
+				<div className='mt-20'>
+					<h2 className='text-2xl text-center font-medium mb-4'>
+						You may also like
+					</h2>
+					<ProductGrid products={similarProducts} />
+          
 				</div>
 			</div>
 		</div>

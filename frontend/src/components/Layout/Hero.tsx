@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="text-center text-white p-6">
           <h1 className="text-4xl md:text-9xl font-bold mb-4 tracking-tighter uppercase">Store <br /> Shamanzhin</h1>
           <p className="text-sm md:text-lg mb-6 tracking-tighter">Shop with us and get the best deals on our products.</p>
-          <Link to='#' className='bg-white text-gray-900 px-6 py-2 rounded-sm text-lg hover:bg-gray-2♦00 transition-all'>Shop Now</Link>
+          <Link to='#' className='bg-white text-gray-900 px-6 py-2 rounded-sm text-lg hover:bg-gray-200 transition-all'>Shop Now</Link>
         </div>
       </div>
 

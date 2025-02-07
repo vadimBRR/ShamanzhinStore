@@ -67,7 +67,7 @@ const CartContents = () => {
 				>
 					<div className='flex items-center'>
 						<img
-							src={item.image}
+							src={item.image }
 							alt={item.name}
 							className='w-20 h-24 object-cover'
 						/>
