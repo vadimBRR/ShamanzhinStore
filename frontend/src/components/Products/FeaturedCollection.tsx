@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import featured from '../../assets/featured.webp'
 const FeaturedCollection = () => {
 	return (
 		<section className='py-16 px-4 lg:px-0'>
@@ -26,7 +26,9 @@ const FeaturedCollection = () => {
 					</Link>
 				</div>
 
-        
+        <div className="lg:w-1/2">
+          <img src={featured} alt="Featured" className="w-full h-full object-cover rounded-tl-3xl rounded-tr-3xl lg:rounded-tl-none lg:rounded-br-3xl" />
+        </div>
 			</div>
 		</section>
 	)
