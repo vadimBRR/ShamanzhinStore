@@ -71,7 +71,7 @@ const MyOrders = () => {
 			<h2 className='text-xl sm:text-2xl font-bold mb-6'>My Order</h2>
 			<div className='relative shadow-md sm:rounded-lg overflow-hidden'>
 				<table className='min-w-full text-left text-gray-500'>
-					<thead className='bg-gray-100 text-xl uppercase text-gray-700'>
+					<thead className='bg-gray-100 text-sm uppercase text-gray-700'>
 						<tr className=''>
 							<th className='py-2 px-4 sm:py-3'>Image</th>
 							<th className='py-2 px-4 sm:py-3'>Order ID</th>

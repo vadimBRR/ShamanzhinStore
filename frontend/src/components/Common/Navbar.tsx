@@ -10,7 +10,24 @@ import CartDrawer from '../Layout/CartDrawer'
 import { IoMdClose } from 'react-icons/io'
 
 const Navbar = () => {
-	const types = ['men', 'women', 'top wear', 'bottom wear']
+  const types = [
+    {
+      name: 'men',
+      link: '/collections/all?gender=Men'
+    },
+    {
+      name: 'women',
+      link: '/collections/all?gender=Women'
+    },
+    {
+      name: 'top wear',
+      link: '/collections/all?gender=Men'
+    },
+    {
+      name: 'bottom wear',
+      link: '/collections/all?gender=Women'
+    }
+  ]
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
 	const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false)
 
@@ -34,10 +51,10 @@ const Navbar = () => {
 					{types.map((type, index) => (
 						<Link
 							key={index}
-							to='#'
+							to={type.link}
 							className='text-gray-700 hover:text-black text-sm font-medium uppercase'
 						>
-							{type}
+							{type.name}
 						</Link>
 					))}
 				</div>
@@ -83,11 +100,11 @@ const Navbar = () => {
           {types.map((type, index) => (
             <Link
               key={index}
-              to='#'
+              to={type.link}
               onClick={toggleMobileNav}
               className='block text-gray-600 hoover:text-black uppercase'
               >
-                {type}
+                {type.name}
               </Link>
           ))}
         </div>
