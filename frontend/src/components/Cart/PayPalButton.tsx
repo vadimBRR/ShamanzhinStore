@@ -4,8 +4,8 @@ const PayPalButton = ({
 	onSuccess,
 	onError,
 }: {
-	amount: string
-	onSuccess: () => void
+	amount: number
+	onSuccess: (details: any) => void
 	onError: () => void
 }) => {
 	return (
