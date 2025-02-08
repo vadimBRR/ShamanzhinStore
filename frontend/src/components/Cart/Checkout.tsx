@@ -21,10 +21,28 @@ const cart = {
 	],
 	totalPrice: 190,
 }
+
+type ShippingAddress = {
+  firstName: string 
+  lastName: string 
+  address: string 
+  city: string 
+  country: string 
+  postalCode: string 
+  phone: string 
+}
 const Checkout = () => {
 	const navigate = useNavigate()
 	const [checkoutId, setCheckoutId] = useState<number|null>(null)
-	const [shippingAddress, setShippingAddress] = useState({})
+	const [shippingAddress, setShippingAddress] = useState<ShippingAddress >({
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    country: '',
+    postalCode: '',
+    phone: '',
+  })
 
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

@@ -21,7 +21,7 @@ const Register = () => {
 
 				>
 					<div className='flex justify-center mb-6'>
-						<h2 className='text-xl font-medium'>Rabbit</h2>
+						<h2 className='text-xl font-medium'>Shamanzhin</h2>
 					</div>
 					<h2 className='text-2xl font-bold text-center mb-6'>Heyyy There!</h2>
 					<p className='text-cenet mb-6'>

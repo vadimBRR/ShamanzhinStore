@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type Order = {
 	_id: number
@@ -15,8 +16,15 @@ type Order = {
 	isPaid: boolean
 }
 const MyOrders = () => {
+  const navigate = useNavigate()
 	const [orders, setOrders] = useState<Order[]>([])
 	const [isLoading, setIsLoading] = useState(true)
+
+
+  const handleRowClick = (orderId: number) => {
+    navigate(`/order/${orderId}`)
+  }
+
 	useEffect(() => {
 		setTimeout(() => {
 			const data: Order[] = [
@@ -87,6 +95,7 @@ const MyOrders = () => {
 							orders.map(order => (
 								<tr
 									key={order._id}
+                  onClick={()=>handleRowClick(order._id)}
 									className='border-b hover:border-gray-50 cursor-pointer'
 								>
 									<td className='py-2 px-2 sm:py-4 sm:px-4'>
