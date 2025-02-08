@@ -119,8 +119,8 @@ const ProductDetails = () => {
     </div>
   }
 	return (
-		<div className='p-6'>
-			<div className='max-w-6xl mx-auto bg-white p-8 rounded-lg'>
+		<div className='p-0 md:p-6'>
+			<div className='max-w-6xl mx-auto bg-white  rounded-lg'>
 				<div className='flex flex-col md:flex-row'>
 					{/* Left */}
 					<div className='hidden md:flex flex-col space-y-4 mr-6'>
